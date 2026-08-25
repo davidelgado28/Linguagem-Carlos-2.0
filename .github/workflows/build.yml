@@ -1,10 +1,6 @@
-name: Compilar e Testar Linguagem Carlos
+name: Compilar Linguagem Carlos
 
-on:
-  push:
-    branches: [ main, master ]
-  pull_request:
-    branches: [ main, master ]
+on: [push, pull_request]
 
 jobs:
   build:
@@ -14,12 +10,12 @@ jobs:
       - name: Baixar código-fonte
         uses: actions/checkout@v4
 
-      - name: Instalar dependências (Flex, Bison e G++)
+      - name: Instalar dependências
         run: |
           sudo apt-get update
           sudo apt-get install -y flex bison build-essential
 
-      - name: Gerar analisadores com Flex e Bison
+      - name: Gerar parser com Bison e lexer com Flex
         run: |
           bison -d parser.y
           flex lexer.l
@@ -27,13 +23,3 @@ jobs:
       - name: Compilar o compilador Carlos
         run: |
           g++ lex.yy.c parser.tab.c -o carlos -lfl
-
-      - name: Testar o binário compilado
-        run: |
-          ./carlos --version || echo "Compilador gerado com sucesso!"
-
-      - name: Salvar o executável como artefato
-        uses: actions/upload-artifact@v4
-        with:
-          name: compilador-carlos-linux
-          path: carlos
