@@ -23,6 +23,7 @@ extern int yylineno;
 %token LBRACE RBRACE LPAREN RPAREN SEMICOLON COMMA
 %token <ival> NUMBER
 %token <sval> IDENTIFIER STRING_LITERAL
+%token NEWLINE
 
 %%
 
