@@ -1,7 +1,7 @@
 %{
 #include <stdio.h>
 #include <string.h>
-#include "parser.tab.h" // Cabeçalho gerado pelo Bison
+#include "parser.tab.h" 
 %}
 
 %option noyywrap
