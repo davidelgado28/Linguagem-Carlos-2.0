@@ -21,8 +21,8 @@ jobs:
 
       - name: Gerar analisadores com Flex e Bison
         run: |
-          flex lexer.l
           bison -d parser.y
+          flex lexer.l
 
       - name: Compilar o compilador Carlos
         run: |
