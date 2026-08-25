@@ -1,25 +1,22 @@
-name: Compilar Linguagem Carlos
-
-on: [push, pull_request]
-
 jobs:
   build:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-latest 
 
     steps:
       - name: Baixar código-fonte
         uses: actions/checkout@v4
 
-      - name: Instalar dependências
+      - name: Executando comandos Bash
         run: |
+          # Tudo o que está aqui dentro roda exatamente como se você estivesse 
+          # digitando no seu terminal Linux local:
+          
+          echo "Iniciando a compilação..."
           sudo apt-get update
-          sudo apt-get install -y flex bison build-essential
-
-      - name: Gerar parser com Bison e lexer com Flex
-        run: |
+          sudo apt-get install -y flex bison build-essential libfl-dev
+          
           bison -d parser.y
           flex lexer.l
-
-      - name: Compilar o compilador Carlos
-        run: |
-          g++ lex.yy.c parser.tab.c -o carlos -lfl
+          g++ lex.yy.c parser.tab.c -o carlos
+          
+          echo "Tudo compilado com sucesso!"
