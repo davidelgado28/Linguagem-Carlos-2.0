@@ -8,7 +8,8 @@
 
 %%
 
-[ \t\n\r]+          { /* Ignora espaços em branco e quebras de linha */ }
+[ \t]+              { /* Ignora apenas espaços e tabulações na mesma linha */ }
+\n|\r\n             { return NEWLINE; }
 \/\/.*              { /* Ignora comentários de uma linha */ }
 \/\*([^*]|\*+[^/])*\*+\/ { /* Ignora comentários de bloco */ }
 
